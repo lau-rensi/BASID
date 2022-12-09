@@ -23,7 +23,7 @@ class _CameraPageState extends State<CameraPage> {
   //====================================================================
 
   List<WasteType> waste = [
-    WasteType("Garbage", "This type of waste is a garbage, asasdaff ,afasfaf ,afsdfg ,sgsgfg,fgdg", false),
+    WasteType("Garbage", "This type of waste is a garbage...", false),
     WasteType("Ashes & Residues", "This type of waste is a garbage", false),
     WasteType("Combustuble & Non-combustible", "This type of waste is a garbage", false),
     WasteType("Bulky Waste", "This type of waste is a garbage", false),
