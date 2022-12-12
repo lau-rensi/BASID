@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0.0),
                     labelText: 'Email',
-                    labelStyle: GoogleFonts.lora(
+                    labelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black54,
                       fontSize: 14.0,
                       fontWeight: FontWeight.normal,
@@ -113,7 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                       borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    floatingLabelStyle: GoogleFonts.lora(
+                    floatingLabelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black54,
                       fontSize: 16.0,
                       letterSpacing: 0.15
@@ -138,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                           isObscure = !isObscure;
                         });
                       },),
-                    labelStyle: GoogleFonts.lora(
+                    labelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black54,
                       fontSize: 14.0,
                         fontWeight: FontWeight.normal,
@@ -149,7 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                       borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    floatingLabelStyle: GoogleFonts.lora(
+                    floatingLabelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black54,
                         fontSize: 16.0,
                         letterSpacing: 0.15
@@ -166,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     TextButton(
                       onPressed: () {},
-                      child: Text('Forgot Password?', style: GoogleFonts.lora(color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.w400),),
+                      child: Text('Forgot Password?', style: GoogleFonts.robotoSerif(color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.w400),),
                     )
                   ],
                 ),
@@ -180,7 +180,7 @@ class _LoginPageState extends State<LoginPage> {
                   color: Color(0xFF43A838
                   ),
                   child: Text("LOGIN",
-                    style: GoogleFonts.roboto(color: Colors.white, fontSize: 16.0,letterSpacing: 0.5)),
+                    style: GoogleFonts.robotoSerif(color: Colors.white, fontSize: 16.0,letterSpacing: 0.5)),
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -190,13 +190,13 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Don\'t have an account?', style: GoogleFonts.lora(color: Colors.grey.shade600, fontSize: 14.0, fontWeight: FontWeight.w400),),
+                    Text('Don\'t have an account?', style: GoogleFonts.robotoSerif(color: Colors.grey.shade600, fontSize: 14.0, fontWeight: FontWeight.w400),),
                     TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           SlideRightRoute(page: RegisterPage()),);},
-                      child: Text('Register', style: GoogleFonts.roboto(color: Colors.blue, fontSize: 14.0, fontWeight: FontWeight.w400, letterSpacing: 0.5),),
+                      child: Text('Register', style: GoogleFonts.robotoSerif(color: Colors.blue, fontSize: 14.0, fontWeight: FontWeight.w400, letterSpacing: 0.5),),
                     )
                   ],
                 ),

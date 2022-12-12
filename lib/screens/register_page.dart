@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:basid_2022/animations/leftSlide_animation.dart';
 import 'package:basid_2022/screens/login_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -55,7 +56,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(0.0),
                           labelText: 'First Name',
-                          labelStyle: TextStyle(
+                          labelStyle: GoogleFonts.robotoSerif(
                             color: Colors.black,
                             fontSize: 14.0,
                             fontWeight: FontWeight.w400,
@@ -65,7 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          floatingLabelStyle: TextStyle(
+                          floatingLabelStyle: GoogleFonts.robotoSerif(
                             color: Colors.black,
                             fontSize: 18.0,
                           ),
@@ -84,7 +85,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(0.0),
                         labelText: 'Last Name',
-                        labelStyle: TextStyle(
+                        labelStyle: GoogleFonts.robotoSerif(
                           color: Colors.black,
                           fontSize: 14.0,
                           fontWeight: FontWeight.w400,
@@ -94,7 +95,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                           borderRadius: BorderRadius.circular(10.0),
                         ),
-                        floatingLabelStyle: TextStyle(
+                        floatingLabelStyle: GoogleFonts.robotoSerif(
                           color: Colors.black,
                           fontSize: 18.0,
                         ),
@@ -115,7 +116,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(0.0),
                           labelText: 'Gender',
-                          labelStyle: TextStyle(
+                          labelStyle: GoogleFonts.robotoSerif(
                             color: Colors.black,
                             fontSize: 14.0,
                             fontWeight: FontWeight.w400,
@@ -134,7 +135,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           items: items
                           .map((item) => DropdownMenuItem<String>(
                               value: item,
-                              child: Text(item, style: TextStyle(fontSize: 14.0)),
+                              child: Text(item, style: GoogleFonts.robotoSerif(fontSize: 14.0)),
                           ))
                           .toList(),
                           onChanged: (item)=> setState(() => selectedItem = item),
@@ -148,7 +149,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(0.0),
                           labelText: 'Age',
-                          labelStyle: TextStyle(
+                          labelStyle: GoogleFonts.robotoSerif(
                             color: Colors.black,
                             fontSize: 14.0,
                             fontWeight: FontWeight.w400,
@@ -158,7 +159,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                             borderRadius: BorderRadius.circular(10.0),
                           ),
-                          floatingLabelStyle: TextStyle(
+                          floatingLabelStyle: GoogleFonts.robotoSerif(
                             color: Colors.black,
                             fontSize: 18.0,
                           ),
@@ -177,7 +178,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0.0),
                     labelText: 'Username',
-                    labelStyle: TextStyle(
+                    labelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
@@ -187,7 +188,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    floatingLabelStyle: TextStyle(
+                    floatingLabelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black,
                       fontSize: 18.0,
                     ),
@@ -211,7 +212,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           isObscure = !isObscure;
                         });
                       },),
-                    labelStyle: TextStyle(
+                    labelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
@@ -221,7 +222,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    floatingLabelStyle: TextStyle(
+                    floatingLabelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black,
                       fontSize: 18.0,
                     ),
@@ -246,7 +247,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           _isObscure = !_isObscure;
                         });
                       },),
-                    labelStyle: TextStyle(
+                    labelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black,
                       fontSize: 14.0,
                       fontWeight: FontWeight.w400,
@@ -256,7 +257,7 @@ class _RegisterPageState extends State<RegisterPage> {
                       borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    floatingLabelStyle: TextStyle(
+                    floatingLabelStyle: GoogleFonts.robotoSerif(
                       color: Colors.black,
                       fontSize: 18.0,
                     ),
@@ -290,7 +291,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         Navigator.push(
                           context,
                           SlideLeftRoute(page: LoginPage()),);},
-                      child: Text('Login here', style: TextStyle(color: Colors.blue, fontSize: 14.0, fontWeight: FontWeight.w400),),
+                      child: Text('Login here', style: GoogleFonts.robotoSerif(color: Colors.blue, fontSize: 14.0, fontWeight: FontWeight.w400),),
                     )
                   ],
                 ),
