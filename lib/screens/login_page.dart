@@ -4,6 +4,7 @@ import 'package:basid_2022/animations/slide_animation.dart';
 import 'package:basid_2022/navpages/navbar.dart';
 import 'package:basid_2022/screens/register_page.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:iconsax/iconsax.dart';
 
 class LoginPage extends StatefulWidget {
@@ -51,7 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                           bottom: 0,
                           child: AnimatedOpacity(
                             opacity: activeIndex == 0 ? 1 : 0,
-                            duration: Duration(seconds: 1,),
+                            duration: Duration(milliseconds: 300),
                             curve: Curves.linear,
                             child: Image.asset('assets/images/logo-basid-2.png', height: 400,),
                           ),
@@ -63,7 +64,7 @@ class _LoginPageState extends State<LoginPage> {
                           bottom: 0,
                           child: AnimatedOpacity(
                             opacity: activeIndex == 1 ? 1 : 0,
-                            duration: Duration(seconds: 1),
+                            duration: Duration(milliseconds: 300),
                             curve: Curves.linear,
                             child: Image.asset('assets/images/login1png.png', height: 400,),
                           ),
@@ -75,7 +76,7 @@ class _LoginPageState extends State<LoginPage> {
                           bottom: 0,
                           child: AnimatedOpacity(
                             opacity: activeIndex == 2 ? 1 : 0,
-                            duration: Duration(seconds: 1),
+                            duration: Duration(milliseconds: 300),
                             curve: Curves.linear,
                             child: Image.asset('assets/images/pictureit.png', height: 400,),
                           ),
@@ -87,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                           bottom: 0,
                           child: AnimatedOpacity(
                             opacity: activeIndex == 3 ? 1 : 0,
-                            duration: Duration(seconds: 1),
+                            duration: Duration(milliseconds: 300),
                             curve: Curves.linear,
                             child: Image.asset('assets/images/action.png', height: 400,),
                           ),
@@ -101,19 +102,21 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0.0),
                     labelText: 'Email',
-                    labelStyle: TextStyle(
-                      color: Colors.black,
+                    labelStyle: GoogleFonts.lora(
+                      color: Colors.black54,
                       fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
+                      fontWeight: FontWeight.normal,
+                      letterSpacing: 0.4
                     ),
                     prefixIcon: Icon(Iconsax.user, color: Color(0xFF43A838), size: 18, ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    floatingLabelStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.0,
+                    floatingLabelStyle: GoogleFonts.lora(
+                      color: Colors.black54,
+                      fontSize: 16.0,
+                      letterSpacing: 0.15
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xFF339C84), width: 1.5),
@@ -135,19 +138,21 @@ class _LoginPageState extends State<LoginPage> {
                           isObscure = !isObscure;
                         });
                       },),
-                    labelStyle: TextStyle(
-                      color: Colors.black,
+                    labelStyle: GoogleFonts.lora(
+                      color: Colors.black54,
                       fontSize: 14.0,
-                      fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.normal,
+                        letterSpacing: 0.4
                     ),
                     prefixIcon: Icon(Iconsax.key, color: Color(0xFF43A838), size: 18, ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xFF339C84), width: 2),
                       borderRadius: BorderRadius.circular(10.0),
                     ),
-                    floatingLabelStyle: TextStyle(
-                      color: Colors.black,
-                      fontSize: 18.0,
+                    floatingLabelStyle: GoogleFonts.lora(
+                      color: Colors.black54,
+                        fontSize: 16.0,
+                        letterSpacing: 0.15
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: BorderSide(color: Color(0xFF339C84
@@ -161,7 +166,7 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     TextButton(
                       onPressed: () {},
-                      child: Text('Forgot Password?', style: TextStyle(color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.w400),),
+                      child: Text('Forgot Password?', style: GoogleFonts.lora(color: Colors.black, fontSize: 14.0, fontWeight: FontWeight.w400),),
                     )
                   ],
                 ),
@@ -174,7 +179,8 @@ class _LoginPageState extends State<LoginPage> {
                   height: 45,
                   color: Color(0xFF43A838
                   ),
-                  child: Text("Login", style: TextStyle(color: Colors.white, fontSize: 16.0),),
+                  child: Text("LOGIN",
+                    style: GoogleFonts.roboto(color: Colors.white, fontSize: 16.0,letterSpacing: 0.5)),
                   padding: EdgeInsets.symmetric(vertical: 10, horizontal: 50),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -184,13 +190,13 @@ class _LoginPageState extends State<LoginPage> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Don\'t have an account?', style: TextStyle(color: Colors.grey.shade600, fontSize: 14.0, fontWeight: FontWeight.w400),),
+                    Text('Don\'t have an account?', style: GoogleFonts.lora(color: Colors.grey.shade600, fontSize: 14.0, fontWeight: FontWeight.w400),),
                     TextButton(
                       onPressed: () {
                         Navigator.push(
                           context,
                           SlideRightRoute(page: RegisterPage()),);},
-                      child: Text('Register', style: TextStyle(color: Colors.blue, fontSize: 14.0, fontWeight: FontWeight.w400),),
+                      child: Text('Register', style: GoogleFonts.roboto(color: Colors.blue, fontSize: 14.0, fontWeight: FontWeight.w400, letterSpacing: 0.5),),
                     )
                   ],
                 ),

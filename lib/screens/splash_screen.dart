@@ -2,10 +2,11 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:basid_2022/screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+ const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,7 @@ class SplashScreen extends StatelessWidget {
         ),
         backgroundColor: Color(0xFFF9F9F9),
         splashIconSize: 600,
-        duration: 4000,
+        duration: 3000,
         splashTransition: SplashTransition.fadeTransition,
         nextScreen: LoginPage(),);
   }
