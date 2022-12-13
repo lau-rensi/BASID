@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppLargeText extends StatelessWidget {
   double size;
   final String text;
   final Color color;
    AppLargeText({Key? key,
-     this.size = 28,
+     this.size = 30,
      required this.text,
      this.color=Colors.black}) : super(key: key);
 
@@ -14,11 +13,10 @@ class AppLargeText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
   text,
-      style: GoogleFonts.robotoSerif(
+      style: TextStyle(
         color:Color(0xFF43A838),
         fontSize: size,
-        fontWeight: FontWeight.w500,
-          letterSpacing: 0.1
+        fontWeight: FontWeight.bold
       )
     );
   }

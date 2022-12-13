@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AppSmallText extends StatelessWidget {
   double size;
@@ -14,7 +13,7 @@ class AppSmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
         text,
-        style: GoogleFonts.robotoSerif(
+        style: TextStyle(
             color:color,
             fontSize: size
         )

@@ -3,7 +3,6 @@ import 'package:basid_2022/pages/about_basid.dart';
 import 'package:basid_2022/widgets/AppLargeText.dart';
 import 'package:basid_2022/widgets/AppSmallText.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 
 //kulang ani kay informations, like the details
@@ -47,7 +46,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             child: 
             Row(
               children: [
-                Text(greeting(),style: GoogleFonts.robotoSerif(fontWeight: FontWeight.bold, fontSize: 22, color: Color(0xFF339C84)),),
+                Text(greeting(),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xFF339C84)),),
                 Expanded(child: Container()),
                 Container(
                   margin: const EdgeInsets.only(right: 20),
@@ -140,7 +139,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
             margin: const EdgeInsets.only(left: 20, right: 20),
             child: Row(
               children: [
-                AppLargeText(text: "Different Types of Solid Waste", size: 20)
+                AppLargeText(text: "Different Types of Solid Waste", size: 22)
               ],
             ),
           ),

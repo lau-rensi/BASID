@@ -43,7 +43,7 @@ dependencies:
   path_provider: ^2.0.11
   geolocator: ^9.0.2
   geocoding: ^2.0.5
-  google_fonts: ^3.0.1
+  requests: ^4.7.0
 dev_dependencies:
   flutter_test:
     sdk: flutter

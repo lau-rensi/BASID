@@ -4,7 +4,6 @@ import 'package:basid_2022/widgets/AppLargeText.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 class CameraPage extends StatefulWidget {
@@ -67,13 +66,13 @@ class _CameraPageState extends State<CameraPage> {
     }
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
-    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
+    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
   }
   Future<void> GetAddressFromLatLong(Position position)async {
     List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
     print(placemarks);
     Placemark place = placemarks[0];
-    address = '${place.locality}, ${place.street}, ${place.country}';
+    address = '${place.street}\n ${place.locality}, ${place.subAdministrativeArea} \n${place.country}';
     setState(()  {
     });
   }
@@ -111,17 +110,17 @@ class _CameraPageState extends State<CameraPage> {
                   children: [
                     Expanded(
                       flex: 1,
-                        child: AppLargeText(text: 'COORDINATE POINTS', size: 12,)),
+                        child: AppLargeText(text: 'COORDINATE POINTS', size: 14,)),
                     Expanded(
                       flex: 1,
-                        child: AppLargeText(text: 'ADDRESS', size: 12,)),
+                        child: AppLargeText(text: 'ADDRESS', size: 14,)),
                   ],
                 ),
                 Row(
                   children: [
                     Container(
                       width: 170,
-                      height: 50,
+                      height: 55,
                       margin: const EdgeInsets.all(1.0),
                       decoration: BoxDecoration(
                         color: Colors.grey[200],
@@ -133,14 +132,14 @@ class _CameraPageState extends State<CameraPage> {
                         child: Text(location,
                           style: TextStyle(
                               color: Colors.black,
-                              fontSize: 12,
-                            fontWeight: FontWeight.normal,
+                              fontSize: 14,
+                            fontWeight: FontWeight.w400,
                           ),),
                       ),
                     ),
                     Container(
                       width: 170,
-                      height: 50,
+                      height: 55,
                       margin: const EdgeInsets.all(3.0),
                       decoration: BoxDecoration(
                           color: Colors.grey[200],
@@ -150,10 +149,10 @@ class _CameraPageState extends State<CameraPage> {
                       child: Align(
                         alignment: Alignment.center,
                         child: Text(' $address',
-                          style: GoogleFonts.robotoSerif(
+                          style: TextStyle(
                             color: Colors.black,
-                            fontSize: 12,
-                            fontWeight: FontWeight.normal,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w400,
                           ),),
                       ),
                     ),
@@ -166,7 +165,7 @@ class _CameraPageState extends State<CameraPage> {
                   Position position = await _getGeoLocationPosition();
                   location ='Lat: ${position.latitude} \nLong: ${position.longitude}';
                   GetAddressFromLatLong(position);
-                }, child: Text('Take A Photo', style: GoogleFonts.robotoSerif(fontSize: 18),),
+                }, child: Text('Take A Photo', style: TextStyle(fontSize: 18),),
                   style: ElevatedButton.styleFrom(minimumSize: Size(290, 40,),
                   primary: Color(0xFF43A838),
                       onPrimary: Colors.white,
@@ -222,7 +221,7 @@ class _CameraPageState extends State<CameraPage> {
                               color: Color(0xFF43A838),
                               child: Text(
                                 "Submit",
-                                style: GoogleFonts.robotoSerif(
+                                style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
                                 ),
@@ -264,7 +263,7 @@ class _CameraPageState extends State<CameraPage> {
       ),
       title: Text(
         name,
-        style: GoogleFonts.robotoSerif(
+        style: TextStyle(
           fontWeight: FontWeight.w500,
         ),
       ),
