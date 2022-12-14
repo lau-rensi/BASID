@@ -41,10 +41,10 @@ class _RegisterPageState extends State<RegisterPage> {
             padding: EdgeInsets.all(20.0),
             child: Column(
               children: [
-                SizedBox(height: 80,),
+                SizedBox(height: 50,),
                 Container(
-                  height: 200,
-                  child: Image.asset('assets/images/register.png'),
+                  height: 50,
+                  child: Text('REGISTRATION', style: TextStyle(color: Color(0xFF43A838), fontSize: 30, fontWeight: FontWeight.w500, fontFamily: 'lora',letterSpacing: 1.5),),
                 ),
                 SizedBox(height: 20,),
                 Row(children: [
@@ -280,7 +280,27 @@ class _RegisterPageState extends State<RegisterPage> {
                     borderRadius: BorderRadius.circular(10.0),
                   ),
                 ),
-                SizedBox(height: 30,),
+                SizedBox(height: 10,),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Divider(
+                        thickness: 1,
+                        height: 1,
+                        color: Color(0xFF339C84),
+                      ),
+                    ),
+                    const SizedBox(width: 12,),
+                    Expanded(
+                      child: Divider(
+                        thickness: 1,
+                        height: 1,
+                        color: Color(0xFF339C84),
+                      ),
+                    ),
+                  ],
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
