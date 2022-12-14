@@ -21,8 +21,13 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   var images ={
     "Garbage.jpg":"Garbage",
     "ashes_residues.jpg":"Ashes & Residues",
-    "logo-basid-2.png":"Combustible & non-combustible",
-    "pictureit.png":"Bulky Wastes"
+    "logo-basid-2.png":"Combustible &\nNon-combustible",
+    "bulky_waste.jpg":"Bulky Wastes",
+    "ustplogo.png":"Street Wastes",
+    "logo.png":"Dead Animals",
+    "register.png":"Construction &\nDemolition Wastes",
+    "clenrologo.png":"Hazardous Wastes",
+    "action.png":"Sewage Wastes",
   };
   @override
   Widget build(BuildContext context) {
@@ -52,9 +57,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   margin: const EdgeInsets.only(right: 20),
                   width: 50,
                   height: 50,
-
-
-
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(image:AssetImage(
@@ -153,11 +155,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
           ),
           SizedBox(height: 20),
           Container(
-            height: 90,
+            height: 150,
             width: double.maxFinite,
             margin: const EdgeInsets.only(left: 20),
             child: ListView.builder(
-                itemCount: 4,
+                itemCount: 8,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (_, index){
               return Container(
@@ -166,8 +168,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   children: [
                     Container(
                 //margin: const EdgeInsets.only(right: 50),
-                    width: 60,
-                    height: 60,
+                    width: 100,
+                    height: 100,
                     decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white,
