@@ -15,7 +15,7 @@ class NavBar extends StatefulWidget {
 
 class _NavBar extends State<NavBar> {
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
-  int index = 0;
+  int index = 2;
   final screens =[
     HomePage(),
     ProfilePage(),

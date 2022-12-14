@@ -7,14 +7,14 @@ import 'package:basid_2022/widgets/app_button.dart';
 import 'package:basid_2022/widgets/responsive_button.dart';
 import 'package:flutter/material.dart';
 //ended at 2:40:20.
-class AboutPage extends StatefulWidget {
-  const AboutPage({Key? key}) : super(key: key);
+class AboutGarbage extends StatefulWidget {
+  const AboutGarbage({Key? key}) : super(key: key);
 //about Garbage waste
   @override
-  State<AboutPage> createState() => _AboutPageState();
+  State<AboutGarbage> createState() => _AboutGarbageState();
 }
 
-class _AboutPageState extends State<AboutPage> {
+class _AboutGarbageState extends State<AboutGarbage> {
   int threatLevel=4;
   @override
   Widget build(BuildContext context) {
