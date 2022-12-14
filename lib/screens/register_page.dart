@@ -33,6 +33,35 @@ class _RegisterPageState extends State<RegisterPage> {
   final passwordController = TextEditingController();
   final password2Controller = TextEditingController();
 
+  Future<void> _showDialog(title, message ) async {
+    final messageBox = Text(message); 
+    final titleBox = Text(title);
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: titleBox,
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                messageBox,
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Try again'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   void initState() {
     Timer.periodic(Duration(seconds: 5), (timer) {
@@ -359,7 +388,38 @@ class _RegisterPageState extends State<RegisterPage> {
                 //address
                 SizedBox(height: 20,),
                 MaterialButton(
-                  onPressed: (){},
+                  onPressed: (){
+                    dynamic firstName = firstNameController.text;
+                    dynamic lastName = lastNameController.text;
+                    dynamic gender = selectedItem;
+                    dynamic age = ageController.text;
+                    dynamic baranggay = selectedBrgy;
+                    dynamic city = selectedCity;
+                    String email = emailController.text;
+                    dynamic pass1 = passwordController.text;
+                    dynamic pass2 = password2Controller.text;
+
+                    RegExp emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'); //regular expressions for email
+
+                    if (!emailRegex.hasMatch(email)){ //if email is not valid
+                      _showDialog('Error!', 'Please enter a valid email'); //throw dialog
+                    } else if (pass1 != pass2) { //if password and password2 does not match
+                      _showDialog('Error!','Password does not match!'); //throw dialog
+                    } else {
+                      print('First Name : $firstName');
+                      print('Last Name : $lastName');
+                      print('Gender : $gender');
+                      print('Age : $age');
+                      print('Baranggay : $baranggay');
+                      print('City : $city');
+                      print('Email : $email');
+                      print('Password : $pass1');
+                      print('Password Confirmation : $pass2');
+                    }
+
+
+
+                  },
                   height: 45,
                   color: Color(0xFF43A838
                   ),
