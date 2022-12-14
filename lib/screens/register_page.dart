@@ -17,7 +17,22 @@ class _RegisterPageState extends State<RegisterPage> {
   bool _isObscure = true;
   List<String> items = ['Male', 'Female'];
   String? selectedItem = 'Male';
+
+  List<String> itemsBrgy = ['Carmen', 'Balulang', 'Patag', 'Lapasan'];
+  String? selectedBrgy = 'Carmen';
+  List<String> itemsCity = ['Cagayan De Oro'];
+  String? selectedCity = 'Cagayan De Oro';
+
+
   final myController = TextEditingController();
+
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final ageController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final password2Controller = TextEditingController();
+
   @override
   void initState() {
     Timer.periodic(Duration(seconds: 5), (timer) {
@@ -51,6 +66,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                       flex: 4,
                       child: TextField(
+                        controller: firstNameController, //your value container for textbox
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(0.0),
@@ -80,6 +96,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   Expanded(
                     flex: 4,
                     child: TextField(
+                      controller: lastNameController, //your value container for textbox
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(0.0),
@@ -144,6 +161,7 @@ class _RegisterPageState extends State<RegisterPage> {
                     Expanded(
                       flex: 4,
                       child: TextField(
+                        controller: ageController,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(0.0),
@@ -172,11 +190,80 @@ class _RegisterPageState extends State<RegisterPage> {
                   ],
                 ),
                 SizedBox(height: 10,),//gender and  age
+                Row(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: DropdownButtonFormField<String>(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(0.0),
+                          labelText: 'Baranggay',
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          prefixIcon: Icon(Iconsax.profile_2user, color: Color(0xFF339C84), size: 18, ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xFF339C84), width: 1.5),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xFF339C84), width: 1.5),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                          value: selectedBrgy,
+                          items: itemsBrgy
+                          .map((item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(item, style: TextStyle(fontSize: 14.0)),
+                          ))
+                          .toList(),
+                          onChanged: (item)=> setState(() => selectedBrgy = item),
+                      ),
+                    ),
+                    SizedBox(width: 7,),
+                    Expanded(
+                      flex: 4,
+                      child: DropdownButtonFormField<String>(
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.all(0.0),
+                          labelText: 'City',
+                          labelStyle: TextStyle(
+                            color: Colors.black,
+                            fontSize: 14.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                          prefixIcon: Icon(Iconsax.profile_2user, color: Color(0xFF339C84), size: 18, ),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xFF339C84), width: 1.5),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Color(0xFF339C84), width: 1.5),
+                            borderRadius: BorderRadius.circular(10.0),
+                          ),
+                        ),
+                          value: selectedCity,
+                          items: itemsCity
+                          .map((item) => DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(item, style: TextStyle(fontSize: 14.0)),
+                          ))
+                          .toList(),
+                          onChanged: (item)=> setState(() => selectedCity = item),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10,),//gender and  age
                 TextField(
+                  controller: emailController,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0.0),
-                    labelText: 'Username',
+                    labelText: 'Email',
                     labelStyle: TextStyle(
                       color: Colors.black,
                       fontSize: 14.0,
@@ -199,6 +286,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),//username
                 SizedBox(height: 10,),
                 TextField(
+                  controller: passwordController,
                   obscureText: isObscure,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
@@ -234,6 +322,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ), //password
                 SizedBox(height: 10,),
                 TextField(
+                  controller: password2Controller,
                   obscureText: _isObscure,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
