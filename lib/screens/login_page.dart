@@ -22,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
 
+  final baseUrl = "http://192.168.1.3";
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -169,7 +171,7 @@ class _LoginPageState extends State<LoginPage> {
                                 };
 
                                 print(payload);
-                                var response = await Requests.post("http://192.168.1.3/basid/mobile_login", body: payload,
+                                var response = await Requests.post("$baseUrl/basid/mobile_login", body: payload,
                                     bodyEncoding: RequestBodyEncoding.FormURLEncoded);
                                 if (response.statusCode == 200) {
                                   dynamic result = jsonDecode(response.json());
