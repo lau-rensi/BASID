@@ -16,6 +16,11 @@ class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Edit Profile'),
+        centerTitle: true,
+        backgroundColor: Color(0xFF339C84),
+      ),
       body: SafeArea(
         child: ListView(
           padding: EdgeInsets.all(20.0),
