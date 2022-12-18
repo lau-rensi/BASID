@@ -4,6 +4,11 @@ import 'package:basid_2022/screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+import 'package:requests/requests.dart';
+
+import 'dart:convert';
+
+
 class RegisterPage extends StatefulWidget {
   const RegisterPage({ Key? key }) : super(key: key);
 
@@ -32,6 +37,8 @@ class _RegisterPageState extends State<RegisterPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final password2Controller = TextEditingController();
+  
+  final baseUrl = "http://192.168.1.3";
 
   Future<void> _showDialog(title, message ) async {
     final messageBox = Text(message); 
@@ -388,7 +395,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 //address
                 SizedBox(height: 20,),
                 MaterialButton(
-                  onPressed: (){
+                  onPressed: () async{
                     dynamic firstName = firstNameController.text;
                     dynamic lastName = lastNameController.text;
                     dynamic gender = selectedItem;
@@ -415,6 +422,26 @@ class _RegisterPageState extends State<RegisterPage> {
                       print('Email : $email');
                       print('Password : $pass1');
                       print('Password Confirmation : $pass2');
+
+
+                      dynamic payload = {
+                        "email" : email, 
+                        "password" : pass1, 
+                        "first_name" : firstName, 
+                        "last_name" : lastName, 
+                        "baranggay" : baranggay, 
+                        "city" : city, 
+                        "gender" : gender, 
+                        "age" : age
+                      };
+
+                      print(payload);
+                      var response = await Requests.post("$baseUrl/basid/mobile_register", body: payload,
+                          bodyEncoding: RequestBodyEncoding.FormURLEncoded);
+                      if (response.statusCode == 200) {
+                        dynamic result = jsonDecode(response.json());
+                        print(result['message']);
+                      }
                     }
 
 
