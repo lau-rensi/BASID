@@ -24,6 +24,35 @@ class _LoginPageState extends State<LoginPage> {
 
   final baseUrl = "http://192.168.1.3";
 
+  Future<void> _showDialog(title, message ) async {
+    final messageBox = Text(message); 
+    final titleBox = Text(title);
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: titleBox,
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                messageBox,
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Try again'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
@@ -162,9 +191,6 @@ class _LoginPageState extends State<LoginPage> {
                             SizedBox(height: 20,),
                             MaterialButton(
                               onPressed: () async {
-                                // Navigator.push(
-                                //   context,
-                                //   SlideRightRoute(page: NavBar()),);
                                 dynamic payload = {
                                   'email': emailTextController.text,
                                   'password': passwordTextController.text
@@ -175,7 +201,14 @@ class _LoginPageState extends State<LoginPage> {
                                     bodyEncoding: RequestBodyEncoding.FormURLEncoded);
                                 if (response.statusCode == 200) {
                                   dynamic result = jsonDecode(response.json());
-                                  print(result['message']);
+
+                                  if (result['message'] == 'Success') { // if login is good
+                                    Navigator.push(
+                                      context,
+                                      SlideRightRoute(page: NavBar()));
+                                  } else {
+                                    _showDialog('Error!', 'Wrong email or password!'); //throw dialog
+                                  }
                                 }
                               },
                               height: 45,
