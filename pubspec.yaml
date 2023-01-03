@@ -44,6 +44,8 @@ dependencies:
   geolocator: ^9.0.2
   geocoding: ^2.0.5
   requests: ^4.7.0
+  flutter_session_manager: ^1.0.3
+  http: ^0.13.5
   flutter_settings_screens: ^0.2.2+1
 dev_dependencies:
   flutter_test:

@@ -4,6 +4,13 @@ import 'package:basid_2022/screens/app_permissions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 
+import 'package:flutter_session_manager/flutter_session_manager.dart';
+
+
+import 'package:basid_2022/screens/login_page.dart';
+
+import '../animations/slide_animation.dart';
+
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
 
@@ -12,6 +19,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
+  var sessionManager = SessionManager();
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +70,14 @@ class _SettingsPageState extends State<SettingsPage> {
     leading: Icon(Icons.logout, color: Colors.grey),
     title: 'Logout',
     subtitle: '',
-    onTap: (){/*logout*/},
+    onTap: () async {
+      await SessionManager().destroy();
+
+                          
+      Navigator.push(
+        context,
+      SlideRightRoute(page: LoginPage()));
+    },
   );
   Widget deleteAccount (BuildContext context) => SimpleSettingsTile(
     leading: Icon(Icons.delete, color: Colors.red),

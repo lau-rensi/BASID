@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:basid_2022/pages/type_waste.dart';
 import 'package:basid_2022/widgets/AppLargeText.dart';
@@ -6,6 +7,16 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 
+
+import 'package:requests/requests.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:flutter_session_manager/flutter_session_manager.dart';
+
+import 'package:basid_2022/animations/slide_animation.dart';
+import 'package:basid_2022/navpages/navbar.dart';
+
+
 class CameraPage extends StatefulWidget {
   const CameraPage({Key? key}) : super(key: key);
 
@@ -13,6 +24,37 @@ class CameraPage extends StatefulWidget {
   State<CameraPage> createState() => _CameraPageState();
 }
 class _CameraPageState extends State<CameraPage> {
+
+  var sessionManager = SessionManager();
+
+  dynamic _long, _lat, _addr;
+
+  @override
+  void initState () {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      _asyncMethod();
+    });
+          
+  }
+
+  var firstName, lastName, age, email,gender ,userID;
+
+  _asyncMethod() async {
+    firstName = await sessionManager.get('first_name');
+    lastName = await sessionManager.get('last_name');
+    var ageS = await sessionManager.get('age');
+    age = ageS.toString();
+    email = await sessionManager.get('email');
+    gender = await sessionManager.get('gender');
+    userID = await sessionManager.get('userID');
+  }
+
+  
+  // final baseUrl = "http://10.10.50.14";
+  final baseUrl = "http://192.168.1.3";
+
+
   var images ={
     "Garbage.jpg":"Garbage",
     "login1png.png":"Ashes & Residues",
@@ -66,13 +108,15 @@ class _CameraPageState extends State<CameraPage> {
     }
     // When we reach here, permissions are granted and we can
     // continue accessing the position of the device.
-    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    // return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    return await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
   }
   Future<void> GetAddressFromLatLong(Position position)async {
     List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
     print(placemarks);
     Placemark place = placemarks[0];
     address = '${place.street}\n ${place.locality}, ${place.subAdministrativeArea} \n${place.country}';
+    _addr = address;
     setState(()  {
     });
   }
@@ -82,11 +126,45 @@ class _CameraPageState extends State<CameraPage> {
   File? _image;
   Future getImage(ImageSource source) async {
     final image = await ImagePicker().pickImage(source: ImageSource.camera);
-    if(image == null) return;
-    final imageTemporary = File(image.path);
+    if(image == null) {
+       Navigator.push(
+        context,
+        SlideRightRoute(page: NavBar()));
+    }
+    final imageTemporary = File(image!.path);
+
+    print(imageTemporary.path);
     setState((){
       this._image = imageTemporary;
     });
+// var response = await Requests.post("$baseUrl/basid/mobile_login", body: payload,
+                                    // bodyEncoding: RequestBodyEncoding.FormURLEncoded);
+
+    // final uri = Uri.parse("$baseUrl/basid_image_uploader/image_upload.php");
+    final uri = Uri.parse("$baseUrl/basid/mobile_upload");
+
+    print(uri);
+
+    var request = http.MultipartRequest('POST',uri);
+    request.fields['name'] = 'test_jay_image';
+    var pic = await http.MultipartFile.fromPath("image", imageTemporary.path);
+    
+    request.files.add(pic);
+    print(request);
+    var response = await request.send();
+
+    print(response);
+
+    if (response.statusCode == 200) {
+      print(response.stream.bytesToString());
+      print('Image Uploaded');
+    } else {
+      print(response.stream.bytesToString());
+      print('Image not Uploaded!');
+    }
+
+
+
   }
   /*Cant store image nor image path provider*/
   //===================================================================
@@ -161,9 +239,12 @@ class _CameraPageState extends State<CameraPage> {
 
                 SizedBox(height: 20),
                 ElevatedButton(onPressed: () async{
+                  print("Taking a photo");
                   getImage(ImageSource.camera);
                   Position position = await _getGeoLocationPosition();
                   location ='Lat: ${position.latitude} \nLong: ${position.longitude}';
+                  _long = position.longitude;
+                  _lat = position.latitude;
                   GetAddressFromLatLong(position);
                 }, child: Text('Take A Photo', style: TextStyle(fontSize: 18),),
                   style: ElevatedButton.styleFrom(minimumSize: Size(290, 40,),
@@ -226,13 +307,41 @@ class _CameraPageState extends State<CameraPage> {
                                   fontSize: 18,
                                 ),
                               ),
-                              onPressed: (){
-                                print("Image ${_image},"
-                                    "\n"
-                                    "Address ${address},"
-                                    "\n"
-                                    "Selected Waste:",); //walay selected waste na data
-                              },
+                              onPressed: () async {
+                                var combinedWaste = '';
+                                for (var i = 0 ; i != waste.length ; i++) {
+                                  if (waste[i].isSelected){
+                                    combinedWaste +=  '${waste[i].name},';
+                                  }
+                                }
+                                combinedWaste = combinedWaste.substring(0, combinedWaste.length - 1);
+                                print('Combined waste = $combinedWaste');
+                                print('image uploadd = ${_image!.path.split('/')[_image!.path.split('/').length - 1]} ');
+                                print('userID = $userID');
+                                print('long = $_long');
+                                print('lat = $_lat');
+                                print('addr = $_addr');
+
+
+                                dynamic payload = {
+                                  "waste_type" : combinedWaste,
+                                  "image_uploaded" : _image!.path.split('/')[_image!.path.split('/').length - 1],
+                                  "reporter_id" : userID,
+                                  "longitude" : _long,
+                                  "latitude" : _lat,
+                                  "addr" : _addr
+                                };
+
+                                print(payload);
+                                var response = await Requests.post("$baseUrl/basid/mobile_report", body: payload,
+                                    bodyEncoding: RequestBodyEncoding.FormURLEncoded);
+                                if (response.statusCode == 200) {
+                                  dynamic result = jsonDecode(response.json());
+                                  print(result['message']);
+                                }
+                              }
+                              
+                              ,
                             ),
                           ),
                         ):Container(),

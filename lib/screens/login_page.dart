@@ -3,6 +3,7 @@ import 'package:basid_2022/navpages/home_page.dart';
 import 'package:requests/requests.dart';
 // import 'dart:html';
 import 'dart:convert';
+import 'package:flutter_session_manager/flutter_session_manager.dart';
 
 import 'package:basid_2022/animations/slide_animation.dart';
 import 'package:basid_2022/navpages/navbar.dart';
@@ -21,8 +22,11 @@ class _LoginPageState extends State<LoginPage> {
   bool isObscure = true;
   final emailTextController = TextEditingController();
   final passwordTextController = TextEditingController();
+  
+  var sessionManager = SessionManager();
 
   final baseUrl = "http://192.168.1.3";
+  // final baseUrl = "http://10.10.50.14";
 
   Future<void> _showDialog(title, message ) async {
     final messageBox = Text(message); 
@@ -201,8 +205,14 @@ class _LoginPageState extends State<LoginPage> {
                                     bodyEncoding: RequestBodyEncoding.FormURLEncoded);
                                 if (response.statusCode == 200) {
                                   dynamic result = jsonDecode(response.json());
-
                                   if (result['message'] == 'Success') { // if login is good
+                                    print(result);
+                                    await sessionManager.set('email', result['email']);
+                                    await sessionManager.set('first_name', result['first_name']);
+                                    await sessionManager.set('last_name', result['last_name']);
+                                    await sessionManager.set('gender', result['gender']);
+                                    await sessionManager.set('age', result['age'].toString());
+                                    await sessionManager.set('userID', result['id'].toString());
                                     Navigator.push(
                                       context,
                                       SlideRightRoute(page: NavBar()));
