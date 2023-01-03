@@ -25,42 +25,64 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   
   var images ={
     "Garbage.jpg":"Garbage",
-    "login1png.png":"Ashes & Residues",
-    "logo-basid-2.png":"Combustible & non-combustible",
-    "pictureit.png":"Bulky Wastes"
+    "ashes_residues.jpg":"Ashes & Residues",
+    "logo-basid-2.png":"Combustible &\nNon-combustible",
+    "bulky_waste.jpg":"Bulky Wastes",
+    "ustplogo.png":"Street Wastes",
+    "logo.png":"Dead Animals",
+    "register.png":"Construction &\nDemolition Wastes",
+    "clenrologo.png":"Hazardous Wastes",
+    "action.png":"Sewage Wastes",
   };
   @override
   Widget build(BuildContext context) {
-    String greeting() {
-
-      var hour = DateTime.now().hour;
-      if (hour < 12) {
-        return 'Good Morning!';
-      }
-      if (hour < 17) {
-        return 'Good Afternoon!';
-      }
-      return 'Good Evening!';
+    var hour = DateTime.now().hour;
+    var message = '';
+    var imageName = '';
+    if (hour < 12){
+      message = 'Good Morning';
+      imageName = 'morning.jpg';
+    } else if(hour > 12){
+      message = 'Good Afternoon';
+      imageName = 'afternoon.jpg';
+    } else if((hour > 16)&&(hour < 20)){
+      message = 'Good Evening';
+      imageName = 'eve.jpg';
+    }else{
+      message = 'Good night';
+      imageName = 'night.jpg';
     }
     TabController _tabController = TabController(length: 3, vsync: this);
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
+          Stack(
+            children: [
+              Image.asset("assets/images/$imageName", height: 95,width: double.infinity,fit: BoxFit.cover, color: Colors.grey.withOpacity(0.9), colorBlendMode: BlendMode.modulate,),
+              Positioned(
+                bottom: 12,
+                left: 10,
+                child: Container(
+                  width: 300,
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(message,style: TextStyle(fontWeight: FontWeight.w700, fontSize: 28, color: Colors.white,
+                ),
+              )
+                ))],
+          ),
+          /*Container(
             padding: const EdgeInsets.only(top: 70, left: 20),
-            child: 
-            Row(
+            child:
+            /*Column(
               children: [
-                Text(greeting(),style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xFF339C84)),),
-                Expanded(child: Container()),
+                Text(message,style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Color(0xFF339C84)),),
+                Container(child: ,
+                height: 13,),
                 Container(
                   margin: const EdgeInsets.only(right: 20),
                   width: 50,
                   height: 50,
-
-
-
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(image:AssetImage(
@@ -71,8 +93,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                 )
 
               ],
-            ),
-          ),
+            ),*/
+          ),*/
           SizedBox(height: 20),
           Container(
             margin: const EdgeInsets.only(left: 20),
@@ -164,11 +186,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
           ),
           SizedBox(height: 20),
           Container(
-            height: 90,
+            height: 150,
             width: double.maxFinite,
             margin: const EdgeInsets.only(left: 20),
             child: ListView.builder(
-                itemCount: 4,
+                itemCount: 8,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (_, index){
               return Container(
@@ -177,8 +199,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   children: [
                     Container(
                 //margin: const EdgeInsets.only(right: 50),
-                    width: 60,
-                    height: 60,
+                    width: 100,
+                    height: 100,
                     decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white,

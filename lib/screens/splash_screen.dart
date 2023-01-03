@@ -3,6 +3,8 @@ import 'package:basid_2022/screens/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
+import '../navpages/navbar.dart';
+
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -37,6 +39,6 @@ class SplashScreen extends StatelessWidget {
         splashIconSize: 600,
         duration: 4000,
         splashTransition: SplashTransition.fadeTransition,
-        nextScreen: LoginPage(),);
+        nextScreen: NavBar(),);
   }
 }

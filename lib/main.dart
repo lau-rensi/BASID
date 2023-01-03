@@ -1,7 +1,7 @@
 import 'package:basid_2022/navpages/home_page.dart';
 import 'package:basid_2022/navpages/navbar.dart';
 import 'package:basid_2022/navpages/profile_page.dart';
-import 'package:basid_2022/pages/about_page.dart';
+import 'package:basid_2022/pages/about_garbage.dart';
 import 'package:basid_2022/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 

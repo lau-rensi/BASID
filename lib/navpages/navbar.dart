@@ -15,10 +15,9 @@ class NavBar extends StatefulWidget {
 
 class _NavBar extends State<NavBar> {
   final navigationKey = GlobalKey<CurvedNavigationBarState>();
-  int index = 0;
+  int index = 1;
   final screens =[
     HomePage(),
-    ProfilePage(),
     CameraPage(),
     SettingsPage(),
   ];
@@ -37,18 +36,15 @@ class _NavBar extends State<NavBar> {
         items: [
           Icon(Icons.home,
           color: Color(0xFFF9F9F9),
-            size: 25,
+            size: 30,
           ),
-          Icon(Icons.person,
-            color: Color(0xFFF9F9F9),
-            size: 25,),
           Icon(Icons.camera_alt_outlined,
             color: Color(0xFFF9F9F9),
-            size: 25,
+            size: 30,
           ),
           Icon(Icons.settings,
             color: Color(0xFFF9F9F9),
-            size: 25,),
+            size: 30,),
         ],
         onTap: (index) => setState(() => this.index = index),
       ),

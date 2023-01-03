@@ -60,7 +60,7 @@ class _AboutBasidState extends State<AboutBasid> {
                       ),
                       SizedBox(height: 10),
                       DescriptionText(
-                          text: "This refers to animal and vegetable wastes resulting from the handling, sale, storage, preparation, cooking and serving of food. Garbage comprising these wastes contains putrescible (rotting) organic matter, which produces an obnoxious odor and attracts rats and other vermin. It, therefore, requires special attention in storage, handling and disposal.")
+                          text: "This study aims to design and develop an application for monitoring solid waste that helps the citizen science community in making relevant policies and programs to combat solid waste issues for the betterment of the community.")
 
                     ],
                   ),
