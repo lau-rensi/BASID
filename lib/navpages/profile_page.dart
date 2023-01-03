@@ -2,6 +2,9 @@ import 'package:basid_2022/widgets/AppLargeText.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
+import 'package:flutter_session_manager/flutter_session_manager.dart';
+
+
 class ProfilePage extends StatefulWidget {
   const ProfilePage({ Key? key }) : super(key: key);
 
@@ -10,10 +13,45 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  
   int activeIndex = 0;
   List<String> items = ['Male', 'Female'];
   String? selectedItem = 'Male';
   final myController = TextEditingController();
+
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final ageController = TextEditingController();
+  final emailController = TextEditingController();
+
+  
+  var sessionManager = SessionManager();
+
+  @override
+  void initState () {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_){
+      _asyncMethod();
+    });
+          
+  }
+
+  _asyncMethod() async {
+    firstNameController.text = await sessionManager.get('first_name');
+    lastNameController.text = await sessionManager.get('last_name');
+    var age = await sessionManager.get('age');
+    ageController.text = age.toString();
+    emailController.text = await sessionManager.get('email');
+    var newSelectedItem = await sessionManager.get('gender');
+    setState(() {
+      selectedItem = newSelectedItem;
+    });
+  }
+
+
+
+
   @override
 
 
@@ -37,6 +75,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Expanded(
                     flex: 4,
                     child: TextField(
+                      controller: firstNameController,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(0.0),
@@ -66,6 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Expanded(
                     flex: 4,
                     child: TextField(
+                      controller: lastNameController,
                       cursorColor: Colors.black,
                       decoration: InputDecoration(
                         contentPadding: EdgeInsets.all(0.0),
@@ -130,6 +170,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     Expanded(
                       flex: 4,
                       child: TextField(
+                        controller: ageController,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.all(0.0),
@@ -159,10 +200,11 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
                 SizedBox(height: 10,),//gender and  age
                 TextField(
+                  controller: emailController,
                   cursorColor: Colors.black,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.all(0.0),
-                    labelText: 'Username',
+                    labelText: 'Email',
                     labelStyle: TextStyle(
                       color: Colors.black,
                       fontSize: 14.0,

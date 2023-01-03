@@ -5,6 +5,8 @@ import 'package:basid_2022/widgets/AppSmallText.dart';
 import 'package:flutter/material.dart';
 
 
+import 'package:flutter_session_manager/flutter_session_manager.dart';
+
 //kulang ani kay informations, like the details
 //logo sa upper right, wala pa. Pause muna kay nag proceed pa sa profile page
 
@@ -18,6 +20,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
+  var sessionManager = SessionManager();
+
+  
   var images ={
     "Garbage.jpg":"Garbage",
     "login1png.png":"Ashes & Residues",
@@ -27,14 +32,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     String greeting() {
+
       var hour = DateTime.now().hour;
       if (hour < 12) {
-        return 'Good Morning';
+        return 'Good Morning!';
       }
       if (hour < 17) {
-        return 'Good Afternoon';
+        return 'Good Afternoon!';
       }
-      return 'Good Evening';
+      return 'Good Evening!';
     }
     TabController _tabController = TabController(length: 3, vsync: this);
     return Scaffold(
@@ -106,7 +112,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin{
                   itemBuilder: (BuildContext context, int index) {
                     return
                       GestureDetector(
-                        onTap: (){
+                        onTap: ()async{
+                          
+                          dynamic id = await SessionManager().get("test");
+
+                          print(id);
+                          
                           Navigator.push(
                               context,
                           SlideRightRoute(page: AboutBasid()));
